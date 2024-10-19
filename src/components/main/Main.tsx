@@ -9,7 +9,7 @@ import { fetchTranscription } from "../../utils/fetchTranscription"
 import Sources from "./sources/Sources"
 import Summary from "./summary/Summary"
 import { fetchSummary } from "../../utils/fetchSummary"
-import { fetchFlowchart } from "../../utils/fetchFlowhcart"
+// import { fetchFlowchart } from "../../utils/fetchFlowhcart"
 import { fetchDownloadVideo } from "../../utils/fetchDownloadVideo"
 import { fetchSummaryVideo } from "../../utils/fetchVideoSummary"
 
