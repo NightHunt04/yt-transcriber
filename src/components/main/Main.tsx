@@ -10,7 +10,8 @@ import Sources from "./sources/Sources"
 import Summary from "./summary/Summary"
 import { fetchSummary } from "../../utils/fetchSummary"
 import { fetchFlowchart } from "../../utils/fetchFlowhcart"
-// import { fetchDownloadVideo } from "../../utils/fetchDownloadVideo"
+import { fetchDownloadVideo } from "../../utils/fetchDownloadVideo"
+import { fetchSummaryVideo } from "../../utils/fetchVideoSummary"
 
 // interface SegmentObj {
 //     id: number
@@ -29,7 +30,7 @@ export default function Main() {
             context?.setUploadLoader(true)
             // const res = await Promise.allSettled([
             //     fetchDownloadAudio(url, fileId),
-            //     fetchDownloadVideo(context?.videoId, fileId)
+            //     fetchDownloadVideo(localStorage.getItem('prevVideoId')!, fileId)
             // ])
             // res.forEach((res, ind) => {
             //     if (res.status === 'fulfilled') {
@@ -37,6 +38,13 @@ export default function Main() {
             //         console.log(val)
             //     } else console.error(`Promise ${ind} failed:`, res.reason)
             // })
+            
+            fetchDownloadVideo(localStorage.getItem('prevVideoId')!, fileId)
+                .then(async () => {
+                    const videoSummary = await fetchSummaryVideo(fileId)
+                    console.log(videoSummary)
+                    context?.setVideoSummary(videoSummary?.summary!)
+                })
             await fetchDownloadAudio(url, fileId)
             context?.setUploadLoader(false)
 
@@ -59,10 +67,11 @@ export default function Main() {
                 context?.setAudioSummary(summary?.summary!)
             else context?.setAudioSummary("An error occured while summarising youtube video's audio")
 
-            const flowchart = await fetchFlowchart(fileId)
-            if (flowchart?.code)
-                context?.setBaseFlowImg(flowchart.base64url)
-            else context?.setBaseFlowImg('no')
+            // const flowchart = await fetchFlowchart(fileId)
+            // if (flowchart?.code)
+            //     context?.setBaseFlowImg(flowchart.base64url)
+            // else context?.setBaseFlowImg('no')
+
         }
         
         if (context && !context?.extractedAudio) {

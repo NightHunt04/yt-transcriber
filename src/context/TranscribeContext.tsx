@@ -50,6 +50,9 @@ interface TranscribeContextInterface {
 
     baseFlowImg: string
     setBaseFlowImg: React.Dispatch<React.SetStateAction<string>>
+
+    videoSummary: string
+    setVideoSummary: React.Dispatch<React.SetStateAction<string>>
 }
 
 const TranscribeContext = createContext<TranscribeContextInterface | null>(null)
@@ -66,9 +69,10 @@ export const TranscribeContextProvider: React.FC<Props> = (props) => {
     const [transcribedResponse, setTranscribedResponse] = useState<TranscribedResponse | null>(null)
     const [audioSummary, setAudioSummary] = useState('')
     const [baseFlowImg, setBaseFlowImg] = useState('')
+    const [videoSummary, setVideoSummary] = useState('')
 
     return (
-        <TranscribeContext.Provider value={{ url, setUrl, videoId, setVideoId, fileId, setFileId, transcribedResponse, setTranscribedResponse, uploadLoader, setUploadLoader, extractedAudio, setExtractedAudio, transcribeLoader, setTranscribeLoader, autoplay, setAutoplay, setStartTime, startTime, audioSummary, setAudioSummary, baseFlowImg, setBaseFlowImg }}>
+        <TranscribeContext.Provider value={{ url, setUrl, videoId, setVideoId, fileId, setFileId, transcribedResponse, setTranscribedResponse, uploadLoader, setUploadLoader, extractedAudio, setExtractedAudio, transcribeLoader, setTranscribeLoader, autoplay, setAutoplay, setStartTime, startTime, audioSummary, setAudioSummary, baseFlowImg, setBaseFlowImg, setVideoSummary, videoSummary }}>
             {props.children}
         </TranscribeContext.Provider>
     )
