@@ -43,7 +43,10 @@ export default function Main() {
                 .then(async () => {
                     const videoSummary = await fetchSummaryVideo(fileId)
                     console.log(videoSummary)
-                    context?.setVideoSummary(videoSummary?.summary!)
+
+                    if (videoSummary)
+                        context?.setVideoSummary(videoSummary?.summary!)
+                    else context?.setVideoSummary('no')
                 })
             await fetchDownloadAudio(url, fileId)
             context?.setUploadLoader(false)

@@ -43,8 +43,8 @@ export default function Summary() {
                 </Markdown>
             </p>
 
-            {context?.videoSummary !== '' && context?.videoSummary ?
-              <div className="w-full md:text-sm flex-col items-start justify-start h-full mt-10">
+            {context?.videoSummary !== '' ?
+              <div className={`${context?.videoSummary === 'no' ? 'hidden' : 'flex-col'} w-full md:text-sm items-start justify-start h-full mt-10`}>
                 <h3 className="md:text-2xl font-semibold mb-1">Summary from video</h3>
                 <p className="max-w-full">
                     <Markdown 
