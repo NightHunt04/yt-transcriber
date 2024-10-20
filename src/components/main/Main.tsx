@@ -42,7 +42,7 @@ export default function Main() {
             fetchDownloadVideo(localStorage.getItem('prevVideoId')!, fileId)
                 .then(async () => {
                     const videoSummary = await fetchSummaryVideo(fileId)
-                    console.log(videoSummary)
+                    console.log('vidSum', videoSummary)
 
                     if (videoSummary)
                         context?.setVideoSummary(videoSummary?.summary!)
