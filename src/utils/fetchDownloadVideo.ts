@@ -14,7 +14,8 @@ export async function fetchDownloadVideo(videoId: string = localStorage.getItem(
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:5000/api/downloadVideo',
+        // url: 'http://localhost:5000/api/downloadVideo',
+        url: 'https://transcribe-py-back.onrender.com/api/downloadVideo',
         headers: { 
           'Content-Type': 'application/json'
         },
